@@ -97,21 +97,15 @@ gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
 <h3>How to fix multiple issues with diffusion model weights?</h3>
 <p>
 <p>
-While recent 
+Text-to-image models suffer from various safety issues that may limit their suitability for deployment.
+Previous methods have separately addressed individual issues of bias, copyright, and offensive content in text-to-image models. However, in the real world, all of these issues appear simultaneously in the same model.
 
-attempt to restrict undesired content via inference methods or
-post-generation classification, but such methods can be easily circumvented when users
-have access to open-source weights.
 </p>
 <p>
-In this paper, we propose a method for fine-tuning model weights to
-<b>erase concepts from diffusion models using their own knowledge</b>.
-Given just the text of the concept to be erased, our method can edit
-the model weights to erase the concept while minimizing the inteference
-with other concepts. This type of fine-tuning has an advantage over
-previous methods: it is not easy to circumvent because it modifies weights,
-yet it is fast and practical because it avoids the expense of retraining
-the whole model on filtered training data.
+In this paper, we present a method that tackles all issues with a single approach. 
+  Our method, Unified Concept Editing (UCE), edits the model without training using <b>a closed-form solution conditioned on cross attention outputs</b>, and scales seamlessly to concurrent edits on text-conditional diffusion models.
+UCE enables direct editing of concepts based on phrases and attributes without training data, supporting rapid iteration.
+Key advantages versus finetuning approaches include: efficient scaling of editing multiple concepts, precise concept changes by editing cross-attention weights directly and avoiding broad interference, and rapid iteration from fast closed-form editing
 </p>
 </div><!--card-block-->
 </div><!--card-->
@@ -127,26 +121,17 @@ the whole model on filtered training data.
   </figcaption>
 </figure>
 
-  <h2> Why erase concepts from diffusion model? </h2>
-  <p>Since large-scale models such as Stable Diffusion are trained
-  to mimic vast training data sets, it is not surprising that
-  they are capable of generating nudity, imitating particular artistic styles, or generating
-  undesired objects.  These capabilities have led to an array of risks and economic
-  impacts: use of the models to create
-  <a href="https://www.washingtonpost.com/technology/2023/02/13/ai-porn-deepfakes-women-consent/"
-    >deepfake porn raises issues of consent and harrassment</a>;
-  their ability to
-  <a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/"
-    >effortlessly imitate artistic styles has led artists to sue</a>, concerned about dire
-  economic consequences for their profession</a>; and their tendency to echo
-  <a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion"
-     >copyrighted or trademarked symbols indiscriminately</a> has drawn another lawsuit.
-  Such issues are a serious concern for institutions who wish to release their models.</p>
+  <h2> Why debias/erase/moderate concepts from diffusion model? </h2>
+  <p>Since large-scale models like Stable Diffusion are trained on massive datasets, they often learn concerning capabilities like generating nudity 
+    or imitating styles/content without permission. This has created risks: Stable Diffusion can be used 
+    to <a href="https://www.washingtonpost.com/technology/2023/02/13/ai-porn-deepfakes-women-consent/">generate nonconsensual deepfake porn</a>, 
+    <a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/">mimic artists' work</a>, 
+    <a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion">reproduce copyrighted/trademarked content</a>, and
+    <a href="https://www.bloomberg.com/graphics/2023-generative-ai-bias/">amplify stereotypes about race and gender</a>.
+   Such issues pose a serious threat for institutions releasing models. </p>
   <p>   
-  There are methods to mitigate such content post-production or during inference,
-  but they are easy to bypass. We propose fine tuning the weights for a small 
-  number of iterations using the text description of the targeted concepts to
-  erase them permanently from the weights. 
+  There are methods that address these concerns separately, but they do not scale well to editing multiple concepts together. 
+    We propose a closed-form solution that can unifiedly address these challenges at scale, editing multiple concepts concurrently with minimal interference.
   </p>
   
 <h2> How to erase concepts from the model? </h2>
