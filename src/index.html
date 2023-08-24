@@ -142,7 +142,7 @@ Key advantages versus finetuning approaches include: efficient scaling of editin
   </figure>
   <p>We edit the cross attention weights by conditioning new target output for the concept embeddings to edit and preserve the previoud outputs for concepts to preserve. We minimize the loss shown in the figure above through closed-form update
   </p>
-  <center><img src="images/paper/uce_closed.png" style="width:250px;padding-bottom:10px;"></center>
+  <center><img src="images/paper/uce_closed.png" style="width:500px;padding-bottom:10px;"></center>
   <p> Our method generalizes to previous state-of-the-art model editing methods like <a href="https://arxiv.org/pdf/2303.08084.pdf">TIME</a> and 
     <a href="https://openreview.net/pdf?id=MkbcAHIYgyS">MEMIT</a>. Our method can also be generalised to editing any linear projection.</p>
 <h2> Erasing an artistic style</h2>
@@ -174,7 +174,7 @@ Key advantages versus finetuning approaches include: efficient scaling of editin
   </figure>
 <h2> Debiasing a profession across gender and race</h2>
   <p> Previous debiasing methods address only dual attributed biases, however, attributes like race are multi-faceted. We propose a multi-faceted debiasing formulation that can be scaled for multiple concepts. Our method has strong debiasing results, improving the race and gender representation in diffusion models.
-  <center><img src="images/paper/debias_equation.png" style="width:250px;padding-bottom:10px;"></center>
+  <center><img src="images/paper/debias_equation.png" style="width:500px;padding-bottom:10px;"></center>
     <p>This formulation allows UCE to address multi-attribute biases like race. We show some quantitative results of our method displaying improved race and gender diversity.</p>
     <figure class="center_image" style="margin-top: 30px">
     <center><img src="images/paper/gender1.png" style="width:100%; max-width:800px"></center>
