@@ -140,7 +140,7 @@ Key advantages versus finetuning approaches include: efficient scaling of editin
     <figcaption> We update the weights of cross attention linear layers in closed-form by conditioning its outputs for the concepts to edit and preserve. Our method, UCE, does not require any training data collection or any gradient descent. UCE can debias, erase, and moderate concepts together in a single edit and scales to editing multiple concepts while minimizing interference with unedited concepts.
     </figcaption>
   </figure>
-  <p>We edit the cross attention weights by conditioning new target output for the concept embeddings to edit and preserve the previoud outputs for concepts to preserve. We minimize the loss shown in the figure above through closed-form update
+  <p>We edit the cross attention weights by conditioning new target output for the concept embeddings to edit and preserve the previoud outputs for concepts to preserve. We minimize the loss shown in the figure above through this closed-form update:
   </p>
   <center><img src="images/paper/uce_closed.png" style="width:500px;padding-bottom:10px;"></center>
   <p> Our method generalizes previous state-of-the-art model editing methods like <a href="https://arxiv.org/pdf/2303.08084.pdf">TIME</a> and 
@@ -226,7 +226,8 @@ Key advantages versus finetuning approaches include: efficient scaling of editin
 <h3 class="card-header">bibliography</h3>
 <div class="card-block">
 <p style="text-indent: -3em; margin-left: 3em;" class="card-text clickselect">
-Rohit Gandikota, Hadas Orgad, Yonatan Belinkov, Joanna Materzy&#324;ska, David Bau. "<em>Unified Concept Editing in Diffusion Models.</em>" arXiv preprint <nobr><a href="https://arxiv.org/pdf/2308.14761.pdf">arXiv:2308.14761</a> (2023).</nobr>
+Rohit Gandikota, Hadas Orgad, Yonatan Belinkov, Joanna Materzy&#324;ska, David Bau. "<em>Unified Concept Editing in Diffusion Models.</em>"
+IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2023.</nobr>
 </p>
 </div>
 <h3 class="card-header">bibtex</h3>
@@ -235,7 +236,7 @@ Rohit Gandikota, Hadas Orgad, Yonatan Belinkov, Joanna Materzy&#324;ska, David B
 @article{gandikota2023unified,
   title={Unified Concept Editing in Diffusion Models},
   author={Rohit Gandikota and Hadas Orgad and Yonatan Belinkov and Joanna Materzy\'nska and David Bau},
-  journal={arXiv preprint arXiv:2308.14761},
+  journal={IEEE/CVF Winter Conference on Applications of Computer Vision},
   year={2023}
 }
 </pre>
