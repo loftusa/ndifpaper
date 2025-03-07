@@ -1,0 +1,100 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\definecolor{local}{RGB}{75,171,224} % 4BABE0
+\definecolor{remote}{RGB}{178,112,175} % B270AF
+\definecolor{petals}{RGB}{210,127,72} % D27F48
+\begin{document}
+\begin{tikzpicture}
+    \pgfplotsset{
+        every x tick label/.append style={yshift=-0.3cm, font=\footnotesize},
+        every y tick label/.append style={font=\footnotesize},
+        xlabel style={font=\footnotesize},
+        ylabel style={font=\footnotesize}
+    }
+    \begin{axis}[
+        width=\textwidth,
+        height=\textwidth,
+        xmode=log,
+        xlabel={Number of Parameters (log)},
+        ylabel={Request Time (s)},
+        ylabel style={yshift=-4pt},
+        legend pos=north west,
+        xmin=100, xmax=70000,
+        ymin=0.01, ymax=4.5,
+        ytick={2, 4},
+        xtick={350,2700,13000,66000},
+        ytick style={opacity=0},
+        axis y line=left,
+        axis x line=bottom,
+        xticklabels={350m,2.7b,13b,66b},
+        xticklabel style={yshift=0.2cm},
+        x tick label style={anchor=north},
+        ymajorgrids=true,
+        legend cell align={left},
+        legend style={
+            draw=none,
+            fill=white,
+            font=\footnotesize,
+        }
+    ]
+    
+    \addplot[local, dashed, line width=1.2pt] coordinates {
+        (125,0.021) (350,0.041) (1300,0.072) (2700,0.123) (6700,0.257) (13000,0.429) (30000,0.913) (66000,1.889)
+    };
+    \addlegendentry{HPC}
+    
+    \addplot[remote, dashed, line width=1.2pt] coordinates {
+        (125,0.541) (350,0.588) (1300,0.627) (2700,0.494) (6700,0.550) (13000,0.773) (30000,1.295) (66000, 2.739)
+    };
+    \addlegendentry{\FabricName{}}
+    
+    \end{axis}
+    \end{tikzpicture}
+    
+    
+    % \begin{tikzpicture}
+    % \pgfplotsset{
+    %     every x tick label/.append style={yshift=-0.3cm, font=\small},
+    %     every y tick label/.append style={font=\small},
+    %     xlabel style={font=\small},
+    %     ylabel style={font=\small}
+    % }
+    % \begin{axis}[
+    %     width=\textwidth,
+    %     height\textwidth,
+    %     xmode=log,
+    %     xlabel={Number of Parameters (log-scale)},
+    %     ylabel={Time (seconds)},
+    %     legend pos=north west,
+    %     xmin=100, xmax=70000,
+    %     ymin=0.01, ymax=4,
+    %     xtick={350,2700,13000,66000},
+    %     ytick style={opacity=0},
+    %     axis y line=left,
+    %     axis x line=bottom,
+    %     xticklabels={350m,2.7b,13b,66b},
+    %     xticklabel style={yshift=0.2cm},
+    %     x tick label style={anchor=north},
+    %     ymajorgrids=true,
+    %     legend cell align={left},
+    %     legend style={
+    %         draw=none,
+    %         fill=white,
+    %         fill opacity=0.7,
+    %         font=\small,
+    %     }
+    % ]
+    % \addplot[local, dashed, line width=1.5pt] coordinates {
+    %     (125,0.021) (350,0.041) (1300,0.072) (2700,0.123) (6700,0.257) (13000,0.429) (30000,0.913) (66000,1.889)
+    % };
+    % \addlegendentry{Local Execution}
+    
+    % \addplot[remote, dashed, line width=1.5pt] coordinates {
+    %     (125,0.541) (350,0.588) (1300,0.627) (2700,0.494) (6700,0.550) (13000,0.773) (30000,1.295) (66000, 2.739)
+    % };
+    % \addlegendentry{Remote Execution}
+    % \end{axis}
+    % \end{tikzpicture}
+\end{document}
